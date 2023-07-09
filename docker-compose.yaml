@@ -34,6 +34,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: example
+      POSTGRES_DB: sentimentapp
     volumes:
       - db-data:/var/lib/postgresql/data
 
