@@ -1,5 +1,4 @@
 @startuml
-title "App Interaction"
 
 left to right direction
 
@@ -11,12 +10,18 @@ rectangle FrontEnd {
 
 actor "App" as App
 
-actor "cron" as cron
-
 database "Postgres" as db
 
-App <--> db : "getLatestSentiment()"
+actor "cron" as cron
 
-App --> visualize
+user <-- visualize
+
+visualize <-- App :  "SentimentMap"
+
+App <-- db : "getLatestSentiment()"
+
+cron --> db : "storeLatestSentiment()"
+
+db --> cron : "isTodayInDB()"
 
 @enduml
